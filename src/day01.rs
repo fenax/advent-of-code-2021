@@ -7,19 +7,7 @@ pub fn run(input:&str){
         |data|{count_increases(data)},
         |data|{part2(data)});
 }
-/*
-pub fn run(input:&str){
-    print_header(1);
-    print_parse();
-    let data = timed_run(||{parser::one_int_per_line(input)});
-    print_part_1();
-    let result1 = timed_run(||{count_increases(&data)});
-    print_result(&result1);
-    print_part_2();
-    let result2 = timed_run(||{part2(&data)});
-    print_result(&result2)
-}
-*/
+
 fn count_increases(data:&Vec<i64>)->usize{
     let mut iter1 = data.iter();
     iter1.next();

@@ -27,7 +27,7 @@ macro_rules! one_day {
     };
 }
 
-pub fn print_single_parse<F,G,H,T,U,V>(num:usize, mut parser:F, mut part1:G, mut part2:H) 
+pub fn print_single_parse<F,G,H,T,U,V>(num:usize, parser:F, mut part1:G, mut part2:H) 
 where 
 F: FnMut()->T, 
 G: FnMut(&T)->U, 

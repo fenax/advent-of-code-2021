@@ -25,6 +25,24 @@
         {
             "type": "lldb",
             "request": "launch",
+            "name": "Run Release executable 'advent-of-code-2021'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--release",
+                    "--bin=advent-of-code-2021",
+                    "--package=advent-of-code-2021"
+                ],
+                "filter": {
+                    "name": "advent-of-code-2021",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },        {
+            "type": "lldb",
+            "request": "launch",
             "name": "Debug unit tests in executable 'advent-of-code-2021'",
             "cargo": {
                 "args": [

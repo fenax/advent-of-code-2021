@@ -2,6 +2,13 @@ use itertools::{izip, Itertools};
 use crate::*;
 
 pub fn run(input:&str){
+    print_single_parse(1,
+        ||{parser::one_int_per_line(input)},
+        |data|{count_increases(data)},
+        |data|{part2(data)});
+}
+/*
+pub fn run(input:&str){
     print_header(1);
     print_parse();
     let data = timed_run(||{parser::one_int_per_line(input)});
@@ -12,7 +19,7 @@ pub fn run(input:&str){
     let result2 = timed_run(||{part2(&data)});
     print_result(&result2)
 }
-
+*/
 fn count_increases(data:&Vec<i64>)->usize{
     let mut iter1 = data.iter();
     iter1.next();

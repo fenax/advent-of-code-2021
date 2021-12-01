@@ -27,23 +27,42 @@ macro_rules! one_day {
     };
 }
 
-pub fn print_header(num:usize){
+pub fn print_single_parse<F,G,H,T,U,V>(num:usize, mut parser:F, mut part1:G, mut part2:H) 
+where 
+F: FnMut()->T, 
+G: FnMut(&T)->U, 
+H: FnMut(&T)->V, 
+U: std::fmt::Display, 
+V: std::fmt::Display
+{
+    print_header(num);
+    print_parse();
+    let data = timed_run(parser);
+    print_part_1();
+    let result1 = timed_run(||{part1(&data)});
+    print_result(&result1);
+    print_part_2();
+    let result2 = timed_run(||{part2(&data)});
+    print_result(&result2)
+}
+
+fn print_header(num:usize){
     println!("Day {:2}", num);
 }
 
-pub fn print_parse(){
+fn print_parse(){
     print!("   {}","parsing".green().dimmed());
 }
 
-pub fn print_part_1(){
+fn print_part_1(){
     print!("    {}","part 1".green());
 }
 
-pub fn print_part_2(){
+fn print_part_2(){
     print!("    {}","part 2".green());
 }
 
-pub fn print_result<T:std::fmt::Display>(result:&T){
+fn print_result<T:std::fmt::Display>(result:&T){
     println!("     {}",result);
 }
 

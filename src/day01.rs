@@ -1,11 +1,11 @@
 use itertools::{izip, Itertools};
 use crate::*;
 
-pub fn run(input:&str){
+pub fn run()-> Result<(), std::io::Error>{
     print_single_parse(1,
-        ||{parser::one_int_per_line(input)},
-        |data|{count_increases(data)},
-        |data|{part2(data)});
+        parser::one_int_per_line,
+        count_increases,
+        part2)
 }
 
 fn count_increases(data:&Vec<i64>)->usize{

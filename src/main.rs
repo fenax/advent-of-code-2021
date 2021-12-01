@@ -16,38 +16,29 @@ fn timed_run<F,T>(mut f: F)->T where F: FnMut()->T{
     x
 }
 
-macro_rules! one_day {
-    ($day:ident) => 
-   {
-        println!("{}",stringify!($day).bold());
-
-        let input = read_to_string(concat!(stringify!($day),".input"))?;
-        $day::run(&input);
-
-    };
-}
-
-pub fn print_single_parse<F,G,H,T,U,V>(num:usize, parser:F, mut part1:G, mut part2:H) 
+pub fn print_single_parse<F,G,H,T,U,V>(num:usize, mut parser:F, mut part1:G, mut part2:H) -> Result<(), std::io::Error> 
 where 
-F: FnMut()->T, 
+F: FnMut(&str)->T, 
 G: FnMut(&T)->U, 
 H: FnMut(&T)->V, 
 U: std::fmt::Display, 
 V: std::fmt::Display
 {
     print_header(num);
+    let file_data = read_to_string(format!("day{:02}.input",num))?;
     print_parse();
-    let data = timed_run(parser);
+    let data = timed_run(||{parser(&file_data)});
     print_part_1();
     let result1 = timed_run(||{part1(&data)});
     print_result(&result1);
     print_part_2();
     let result2 = timed_run(||{part2(&data)});
-    print_result(&result2)
+    print_result(&result2);
+    Ok(())     
 }
 
 fn print_header(num:usize){
-    println!("Day {:2}", num);
+    println!("{}",format!("Day {:2}", num).bold());
 }
 
 fn print_parse(){
@@ -68,7 +59,7 @@ fn print_result<T:std::fmt::Display>(result:&T){
 
 fn main() -> Result<(), std::io::Error> {
 //  one_day_with_input!(day15,"3,1,2");
-    one_day!(day01);
+    day01::run()?;
 
     Ok(())  
 }

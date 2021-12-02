@@ -2,6 +2,7 @@ extern crate regex;
 extern crate itertools;
 mod parser;
 mod day01;
+mod day02;
 
 use std::fs::read_to_string;
 use std::time::Instant;
@@ -58,8 +59,6 @@ fn print_result<T:std::fmt::Display>(result:&T){
 }
 
 fn main() -> Result<(), std::io::Error> {
-//  one_day_with_input!(day15,"3,1,2");
-    day01::run()?;
-
+    day02::run()?;
     Ok(())  
 }

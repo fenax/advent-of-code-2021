@@ -38,3 +38,13 @@ pub fn items_separated_by_whitespace_separated_by_blankline(input:& str)->Vec<Ve
     input.split("\n\n").map(str::trim).filter(|x| !x.is_empty())
                         .map(|l| l.split(char::is_whitespace).filter(|x| !x.is_empty()).map(|x|x.to_string()).collect()).collect()
 }
+pub fn separated_by_blank(input:& str)->Iterator<&str>{
+    input.split("\n\n").map(str::trim).filter(|x|!x.is_empty()
+}
+
+pub fn bingo(input:&str){
+    let input = separatrd_by_blank(input);
+    let numbers = coma_separated_int(input.next().unwrap());
+    let bingo = input.map(one_char_vec_per_line).collect();
+    (numbers, bingo)
+}

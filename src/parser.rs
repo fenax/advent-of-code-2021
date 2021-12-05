@@ -6,6 +6,13 @@ pub fn one_int_per(input:&str,p:char)->Vec<i64>{
                      .collect()
 }
 
+pub fn one_int_match<F:FnMut(char) -> bool>(input:&str,p:F)->Vec<i64>{
+    input.split(p)
+                     .map(str::trim)
+                     .filter_map(|s|s.parse::<i64>().ok())
+                     .collect()
+}
+
 pub fn coma_separated_int(input:&str) -> Vec<i64>{
     one_int_per(input, ',')
 }
@@ -47,4 +54,8 @@ pub fn bingo(input:&str)->(Vec<i64>,Vec<Vec<Vec<i64>>>){
     let numbers = coma_separated_int(input.next().unwrap());
     let bingo = input.map(|x|{one__per_line(x,|y|{one_int_per(y, ' ')})}).collect();
     (numbers, bingo)
+}
+
+pub fn int_separated_by_any(input:&str)->Vec<i64>{
+    one_int_match(input,|x| {!x.is_ascii_digit()})
 }

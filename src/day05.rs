@@ -98,8 +98,10 @@ fn build_map(data:&Vec<Vec<i64>>)->[[u8;1000];1000]{
 
 fn part2(data:&Vec<Vec<i64>>)->String{
 
-    let map = build_map(data);
-    let solution :usize =map.iter().map(|x|{x.iter().filter(|v|{**v>=2}).count()}).sum();
+    let map = timed_run(||{build_map(data)});
+    let solution :usize = timed_run(||{
+        map.iter().map(|x|{x.iter().fold(0,|o,v|{if *v>=2 {o+1}else{o}})}).sum()
+    });
 
     format!("solution {}",solution)
 }

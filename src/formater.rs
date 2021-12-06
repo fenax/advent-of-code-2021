@@ -3,7 +3,7 @@ use std::time::Instant;
 use colored::*;
 
 
-fn timed_run<F,T>(mut f: F)->T where F: FnMut()->T{
+pub fn timed_run<F,T>(mut f: F)->T where F: FnMut()->T{
     let start = Instant::now();
     let x = f();
     let duration = start.elapsed();

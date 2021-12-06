@@ -1,5 +1,3 @@
-use itertools::{izip, Itertools};
-use regex::internal::Input;
 use crate::formater::*;
 use crate::parser;
 
@@ -33,7 +31,7 @@ fn follow_path(data:&Vec<(char,u32)>)->String{
 }
 
 fn follow_correct_path(data:&Vec<(char,u32)>)->String{
-    let (x,y,a) = 
+    let (x,y,_a) = 
     data.iter().fold((0,0,0), |(x,y,a),(i,j)|{
         match i{
             'f' => (x+j,y+a*j,a),

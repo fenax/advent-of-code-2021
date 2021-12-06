@@ -11,6 +11,7 @@ pub fn timed_run<F,T>(mut f: F)->T where F: FnMut()->T{
     x
 }
 
+#[allow(dead_code)]
 pub fn read_file(num:usize)->String{
     read_to_string(format!("day{:02}.input",num)).unwrap()
 }

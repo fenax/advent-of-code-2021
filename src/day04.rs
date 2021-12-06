@@ -56,10 +56,10 @@ fn part1(data:&(Vec<i64>,Vec<Vec<Vec<i64>>>))->String{
     let mut index = Vec::new();
     let mut grids = Vec::new();
     let win:u8 = 0b11111;
-    for i in 0..100{
+    for _i in 0..100{
         index.push(Vec::new());
     }
-    for i in 0..data.1.len(){
+    for _i in 0..data.1.len(){
         grids.push([0 as u8;5]);
     }
     for (w,i) in data.1.iter().enumerate(){
@@ -100,10 +100,10 @@ fn part2(data:&(Vec<i64>,Vec<Vec<Vec<i64>>>))->String{
     let mut grids = Vec::new();
     let mut won = Vec::new();
     let win:u8 = 0b11111;
-    for i in 0..100{
+    for _i in 0..100{
         index.push(Vec::new());
     }
-    for i in 0..data.1.len(){
+    for _i in 0..data.1.len(){
         grids.push([0 as u8;5]);
         won.push(false);
     }

@@ -17,6 +17,7 @@ pub fn coma_separated_int(input:&str) -> Vec<i64>{
     one_int_per(input, ',')
 }
 
+#[allow(dead_code)]
 pub fn one_string_per_line(input:& str) -> Vec<String>{
     input.split('\n').map(str::trim)
                      .filter(|x| !x.is_empty())
@@ -24,6 +25,7 @@ pub fn one_string_per_line(input:& str) -> Vec<String>{
                      .collect()
 }
 
+#[allow(non_snake_case)]
 pub fn one__per_line<T,F>(input:& str,line_parser:F) -> Vec<T>
 where
 F: Fn(&str)->T
@@ -41,6 +43,8 @@ pub fn one_char_vec_per_line(input:& str)->Vec<Vec<char>>{
     input.split('\n').map(str::trim).filter(|x| !x.is_empty())
                      .map(|l| l.chars().collect()).collect()
 }
+
+#[allow(dead_code)]
 pub fn items_separated_by_whitespace_separated_by_blankline(input:& str)->Vec<Vec<String>>{
     input.split("\n\n").map(str::trim).filter(|x| !x.is_empty())
                         .map(|l| l.split(char::is_whitespace).filter(|x| !x.is_empty()).map(|x|x.to_string()).collect()).collect()

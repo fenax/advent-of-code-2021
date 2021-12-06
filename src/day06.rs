@@ -49,7 +49,7 @@ fn build_countings(data:&Vec<i64>)->[i64;9]{
 
 fn part2(data:&Vec<i64>)->String{
     let mut countings = build_countings(data);
-    for x in 0..256{
+    for _x in 0..256{
         let [a,b,c,d,e,f,g,h,i] = countings;
         countings = [b,c,d,e,f,g,h+a,i,a];
     }
@@ -60,7 +60,7 @@ fn part2(data:&Vec<i64>)->String{
 
 fn part1(data:&Vec<i64>)->String{
     let mut countings = build_countings(data);
-    for x in 0..80{
+    for _x in 0..80{
         let [a,b,c,d,e,f,g,h,i] = countings;
         countings = [b,c,d,e,f,g,h+a,i,a];
     }

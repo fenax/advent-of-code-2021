@@ -46,6 +46,7 @@ fn parse(input:&str)->Vec<Vec<i64>>{
     parser::one__per_line(input,parser::int_separated_by_any)
 }
 
+/*
 fn min_max<T:Ord+Copy>(a:T,b:T)->(T,T){
     (a.min(b),a.max(b))
 }
@@ -65,16 +66,17 @@ fn part1_bad(data:&Vec<Vec<i64>>)->String{
     let total = filtered.iter().enumerate().filter(|(i,v)|{filtered.iter().skip(i+1).any(|x|{intersect(v,x)}) }).count();
         format!("solution {}",total)
 }
+*/
 
 fn build_map(data:&Vec<Vec<i64>>)->[[u8;1000];1000]{
     let mut map = [[0 as u8;1000];1000];
 
     for v in data{
-        let x_inc = (v[2]-v[0]);
-        let y_inc = (v[3]-v[1]);
+        let x_inc = v[2]-v[0];
+        let y_inc = v[3]-v[1];
         let mut x = v[0];
         let mut y = v[1];
-        for j in 0..=x_inc.abs().max(y_inc.abs()){
+        for _j in 0..=x_inc.abs().max(y_inc.abs()){
             map[x as usize][y as usize] += 1;
             x += x_inc.signum();
             y += y_inc.signum();

@@ -12,20 +12,24 @@ pub fn run()-> Result<(), std::io::Error>{
 
 #[cfg(test)]
 mod tests {
+    use crate::formater::read_file;
     use crate::day06::{parse,part1,part2};
 
     static EXEMPLE:&'static str = 
 r#"3,4,3,1,2"#;
 
     #[test]
-    fn part1_test() {
+    fn test_example() {
         let data =  parse(EXEMPLE);
         assert_eq!(part1(&data), format!("solution {}",5934));
+        assert_eq!(part2(&data), format!("solution {}",26984457539i64));
     }
+
     #[test]
-    fn part2_test() {
-        let data =  parse(EXEMPLE);
-        assert_eq!(part2(&data), format!("solution {}",0));
+    fn test(){
+        let data = parse(&read_file(6));
+        assert_eq!(part1(&data), format!("solution {}",354564));
+        assert_eq!(part2(&data), format!("solution {}",1609058859115i64));
     }
 }
 

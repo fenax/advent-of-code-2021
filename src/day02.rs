@@ -47,18 +47,21 @@ fn follow_correct_path(data:&Vec<(char,u32)>)->String{
 
 #[cfg(test)]
 mod tests {
+    use crate::formater::read_file;
     use crate::day02::{parser,follow_path,follow_correct_path};
 
     static EXEMPLE:&'static str = "forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2";
 
     #[test]
-    fn part1_test() {
+    fn test_example() {
         let data =  parser(EXEMPLE);
         assert_eq!(follow_path(&data), format!("distance: {} depth: {} solution: {}",15,10,150));
+        assert_eq!(follow_correct_path(&data), format!("distance: {} depth: {} solution: {}",15,60,900));
     }
     #[test]
-    fn part2_test() {
-        let data =  parser(EXEMPLE);
-        assert_eq!(follow_correct_path(&data), format!("distance: {} depth: {} solution: {}",15,60,900));
+    fn test(){
+        let data = parser(&read_file(2));
+        assert_eq!(follow_path(&data), format!("distance: {} depth: {} solution: {}",1832,1172,2147104));
+        assert_eq!(follow_correct_path(&data), format!("distance: {} depth: {} solution: {}",1832,1116059,2044620088));
     }
 }

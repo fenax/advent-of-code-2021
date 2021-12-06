@@ -12,6 +12,7 @@ pub fn run()-> Result<(), std::io::Error>{
 
 #[cfg(test)]
 mod tests {
+    use crate::formater::read_file;
     use crate::parser::bingo;
     use crate::day04::{part1,part2};
 
@@ -38,14 +39,16 @@ r#"7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 "#;
 
     #[test]
-    fn part1_test() {
+    fn test_example() {
         let data =  bingo(EXEMPLE);
         assert_eq!(part1(&data), format!("winner {} with number {} with sum {} solution {}",3,24,188,4512));
+        assert_eq!(part2(&data), format!("winner {} with number {} with sum {} solution {}",2,13,148,1924));
     }
     #[test]
-    fn part2_test() {
-        let data =  bingo(EXEMPLE);
-        assert_eq!(part2(&data), format!("winner {} with number {} with sum {} solution {}",2,13,148,1924));
+    fn test() {
+        let data =  bingo(&read_file(4));
+        assert_eq!(part1(&data), "winner 64 with number 77 with sum 539 solution 41503");
+        assert_eq!(part2(&data), "winner 14 with number 14 with sum 227 solution 3178");
     }
 }
 

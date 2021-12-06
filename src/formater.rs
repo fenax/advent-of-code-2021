@@ -11,6 +11,10 @@ pub fn timed_run<F,T>(mut f: F)->T where F: FnMut()->T{
     x
 }
 
+pub fn read_file(num:usize)->String{
+    read_to_string(format!("day{:02}.input",num)).unwrap()
+}
+
 pub fn print_single_parse<F,G,H,T,U,V>(num:usize, mut parser:F, mut part1:G, mut part2:H) -> Result<(), std::io::Error> 
 where 
 F: FnMut(&str)->T, 

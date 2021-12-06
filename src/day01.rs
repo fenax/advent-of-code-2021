@@ -33,16 +33,21 @@ fn part2(data:&Vec<i64>)->usize{
 
 #[cfg(test)]
 mod tests {
+    use crate::parser::one_int_per_line;
+    use crate::formater::read_file;
     use crate::day01::{count_increases, part2};
 
     static EXEMPLE:&'static[i64] = &[199,200,208,210,200,207,240,269,260,263];
 
     #[test]
-    fn part1_test() {
+    fn test_example() {
         assert_eq!(count_increases(&EXEMPLE.to_vec()), 7);
+        assert_eq!(part2(&EXEMPLE.to_vec()),5)
     }
     #[test]
-    fn part2_test(){
-        assert_eq!(part2(&EXEMPLE.to_vec()),5)
+    fn test(){
+        let data = one_int_per_line(&read_file(1));
+        assert_eq!(count_increases(&data).to_string(), format!("{}",1342));
+        assert_eq!(part2(&data).to_string(), format!("{}",1378));
     }
 }

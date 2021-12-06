@@ -12,20 +12,23 @@ pub fn run()-> Result<(), std::io::Error>{
 
 #[cfg(test)]
 mod tests {
+    use crate::formater::read_file;
     use crate::parser::one_char_vec_per_line;
     use crate::day03::{part1,part2};
 
     static EXEMPLE:&'static str = "00100\n11110\n10110\n10111\n10101\n01111\n00111\n11100\n10000\n11001\n00010\n01010\n";
 
     #[test]
-    fn part1_test() {
+    fn test_example() {
         let data =  one_char_vec_per_line(EXEMPLE);
         assert_eq!(part1(&data), format!("gamma {} [{}] epsilon {} [{}] solution {}","10110",22,"01001",9,198));
+        assert_eq!(part2(&data), format!("oxygen {} [{}] CO2 {} [{}] solution {}","10111",23,"01010",10,230));
     }
     #[test]
-    fn part2_test() {
-        let data =  one_char_vec_per_line(EXEMPLE);
-        assert_eq!(part2(&data), format!("oxygen {} [{}] CO2 {} [{}] solution {}","10111",23,"01010",10,230));
+    fn test() {
+        let data =  one_char_vec_per_line(&read_file(3));
+        assert_eq!(part1(&data), "gamma 100111000110 [2502] epsilon 011000111001 [1593] solution 3985686");
+        assert_eq!(part2(&data), "oxygen 101011011101 [2781] CO2 001110010111 [919] solution 2555739");
     }
 }
 

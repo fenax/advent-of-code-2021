@@ -8,6 +8,7 @@ mod day03;
 mod day04;
 mod day05;
 mod day06;
+mod day07;
 
 fn main() -> Result<(), std::io::Error> {
     day01::run()?;
@@ -16,5 +17,6 @@ fn main() -> Result<(), std::io::Error> {
     day04::run()?;
     day05::run()?;
     day06::run()?;
+    day07::run()?;
     Ok(())  
 }

@@ -1,3 +1,6 @@
+use std::collections::HashMap;
+use itertools::GroupingMap;
+
 use crate::formater::*;
 use crate::parser;
 
@@ -37,7 +40,7 @@ fn parse(input:&str)->Vec<i64>{
     parser::coma_separated_int(input)
 }
 
-fn build_countings(data:&Vec<i64>)->Vec<i16>{
+fn build_countings(data:&Vec<i64>)->Vec<(i16,i16)>{
     let len = *data.iter().max().unwrap() as usize + 1;
     let mut out = Vec::with_capacity(len);
     out.resize(len,0);
@@ -45,6 +48,7 @@ fn build_countings(data:&Vec<i64>)->Vec<i16>{
     for i in data{
         out[*i as usize] += 1;
     }
+    let out: Vec<(i16,i16)> = out.iter().enumerate().filter_map(|(i,&x)|if x>0 {Some((i as i16,x))}else{None}).collect();
 
     out
 }
@@ -59,7 +63,7 @@ fn part2(data:&Vec<i64>)->String{
     let mut min_value = i64::MAX;
     let mut min_index = 0;
     for i in 0..data.len(){
-        let cur:i64 = data.iter().enumerate().map(|(j,&v)|{triangular((j as i64-i as i64).abs())* v as i64}).sum();
+        let cur:i64 = data.iter().map(|(j,v)|{triangular((*j as i64-i as i64).abs())* *v as i64}).sum();
         if cur < min_value{
             min_value = cur;
             min_index = i;
@@ -76,7 +80,7 @@ fn part1(data:&Vec<i64>)->String{
     let mut min_value = i64::MAX;
     let mut min_index = 0;
     for i in 0..data.len(){
-        let cur:i64 = data.iter().enumerate().map(|(j,&v)|{(j as i64-i as i64).abs()* v as i64}).sum();
+        let cur:i64 = data.iter().map(|(j,v)|{(*j as i64-i as i64).abs()* *v as i64}).sum();
         if cur < min_value{
             min_value = cur;
             min_index = i;
@@ -85,4 +89,33 @@ fn part1(data:&Vec<i64>)->String{
 
     let solution = min_value;
     format!("solution {} at position {}",solution,min_index)
+}
+
+fn part1_maybe_faster(data:&Vec<i64>)->String{
+    let map = build_hash_countings(data);
+
+    let map:Vec<(i16,i16)> = map.iter().map(|(&a,&b)|(a,b)).collect();
+
+    let mut min_value = i64::MAX;
+    let mut min_index = 0;
+
+    for i in 0..data.len(){
+        let cur:i64 = map.iter().map(|(j,v)|{(*j as i64-i as i64).abs()* *v as i64}).sum();
+        if cur < min_value{
+            min_value = cur;
+            min_index = i;
+        }
+    }
+
+    let solution = min_value;
+    format!("solution {} at position {}",solution,min_index) 
+}
+
+fn build_hash_countings(data:&Vec<i64>)->HashMap<i16,i16>{
+    let mut out = HashMap::new();
+    for i in data{
+        let x = out.entry(*i as i16).or_insert(0i16);
+        *x+=1;
+    }
+    out
 }

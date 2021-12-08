@@ -25,6 +25,16 @@ pub fn one_string_per_line(input:& str) -> Vec<String>{
                      .collect()
 }
 
+pub fn one_x_per_y<T,F>(input:& str,separator:char,line_parser:F)->Vec<T>
+where
+F: Fn(&str)->T
+{
+    input.split(separator).map(str::trim)
+                          .filter(|x| !x.is_empty())
+                          .map(|x| line_parser(x))
+                          .collect()
+}
+
 #[allow(non_snake_case)]
 pub fn one__per_line<T,F>(input:& str,line_parser:F) -> Vec<T>
 where

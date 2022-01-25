@@ -70,12 +70,12 @@ fn part2(data:&Vec<Vec<i8>>)->String{
 
     let stride = data[0].len();
     let mut last_bassin =0;
-    print!("\n");
+//    print!("\n");
     for y in 0..data.len(){
         for x in 0..stride{
-            let mut cur = data[y][x].to_string().normal();
+//            let mut cur = data[y][x].to_string().normal();
             if data[y][x] == 9{
-                cur = cur.red();
+//                cur = cur.red();
                 bassins.push(0);
             }else{
                 let a = *bassins.last().unwrap_or(&0);
@@ -87,12 +87,12 @@ fn part2(data:&Vec<Vec<i8>>)->String{
                 };
                 if a == b {
                     if a == 0{
-                        cur = cur.yellow();
+//                        cur = cur.yellow();
                         last_bassin += 1;
                         count.insert(last_bassin, 1);
                         bassins.push(last_bassin);
                     }else{
-                        cur = cur.green();
+//                        cur = cur.green();
                         *(count.entry(a).or_default()) +=1;
                         count.entry(b);
                         bassins.push(b);
@@ -100,7 +100,7 @@ fn part2(data:&Vec<Vec<i8>>)->String{
 
                 }else{
                     if !join.ends_with(&[(a,b)]) && a != 0 && b != 0{
-                        cur = cur.blue();
+//                        cur = cur.blue();
                         join.push((a,b));
                         let b_val = *count.entry(b).or_default();
                         *(count.entry(a).or_default()) += b_val;
@@ -111,9 +111,9 @@ fn part2(data:&Vec<Vec<i8>>)->String{
                     *(count.entry(sel).or_default()) +=1;
                 }
             }
-            print!("{}",cur);
+//            print!("{}",cur);
         }
-        print!("\n");
+//        print!("\n");
     }
 
     let mut top:Vec<(u16,u16)> = count.iter().filter_map(|(k,v)|{if k>&0 {Some((*v,*k))} else {None}}).collect();

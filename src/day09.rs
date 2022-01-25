@@ -1,9 +1,9 @@
-use std::borrow::BorrowMut;
+//use std::borrow::BorrowMut;
 use std::collections::HashMap;
 
 use crate::formater::*;
 use crate::parser;
-use colored::*;
+//use colored::*;
 
 pub fn run()-> Result<(), std::io::Error>{
     print_single_parse(9,
@@ -137,8 +137,8 @@ fn part1(data:&Vec<Vec<i8>>)->String{
 
     let mut list:Vec<i8> = Vec::new();
 
-    for y in (1..data.len()-1){
-        for x in (1..data[0].len()-1){
+    for y in 1..data.len()-1{
+        for x in 1..data[0].len()-1{
             if is_low(data, x,y){
                 list.push(data[y][x]);
             }

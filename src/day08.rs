@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 
 use crate::formater::*;
-use crate::parser;
+//use crate::parser;
 use crate::parser::one_x_per_y;
 
 pub fn run()-> Result<(), std::io::Error>{

@@ -1,5 +1,5 @@
-use std::collections::HashMap;
-use itertools::GroupingMap;
+//use std::collections::HashMap;
+//use itertools::GroupingMap;
 
 use crate::formater::*;
 use crate::parser;
@@ -90,7 +90,7 @@ fn part1(data:&Vec<i64>)->String{
     let solution = min_value;
     format!("solution {} at position {}",solution,min_index)
 }
-
+/* 
 fn part1_maybe_faster(data:&Vec<i64>)->String{
     let map = build_hash_countings(data);
 
@@ -118,4 +118,4 @@ fn build_hash_countings(data:&Vec<i64>)->HashMap<i16,i16>{
         *x+=1;
     }
     out
-}
+} */

@@ -1,6 +1,6 @@
 use crate::formater::*;
 use crate::parser;
-use colored::*;
+//use colored::*;
 
 pub fn run()-> Result<(), std::io::Error>{
     print_single_parse(11,
@@ -118,7 +118,7 @@ fn part1(data:&Vec<Vec<u32>>)->String{
     let mut data:Vec<Vec<u32>> = data.clone();
     let mut count:u32 = 0;
 
-    for i in 0..100{
+    for _ in 0..100{
         step(&mut data, &mut count);
     }
 

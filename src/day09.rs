@@ -29,15 +29,15 @@ r#"2199943210
     #[test]
     fn test_example() {
         let data =  parse(EXEMPLE);
-        assert_eq!(part1(&data), format!("solution {:?} {}",[1,0,5,5].to_vec(),15));
-        assert_eq!(part2(&data), format!("solution {}",26984457539i64));
+        assert_eq!(part1(&data), format!("solution {}",15));
+        assert_eq!(part2(&data), format!("solution {}",1134));
     }
 
     #[test]
     fn test(){
         let data = parse(&read_file(9));
-        assert_eq!(part1(&data), format!("solution {}",354564));
-        assert_eq!(part2(&data), format!("solution {}",1609058859115i64));
+        assert_eq!(part1(&data), format!("solution {}",496));
+        assert_eq!(part2(&data), format!("solution {}",902880));
     }
 }
 
@@ -122,7 +122,7 @@ fn part2(data:&Vec<Vec<i8>>)->String{
     top.reverse();
 
     let solution:i64 = top[0].0 as i64 * top[1].0 as i64 * top[2].0 as i64;
-    format!("solution {:?} {:?} {}",count, top,solution)
+    format!("solution {}",solution)
 }
 
 fn is_low(data:&Vec<Vec<i8>>,x:usize,y:usize)->bool{
@@ -146,5 +146,5 @@ fn part1(data:&Vec<Vec<i8>>)->String{
     }
 
     let solution:i64 = list.iter().fold(0 as i64,|v,i| v+((*i)as i64 +1));
-    format!("solution {:?} {}",list,solution)
+    format!("solution {}",solution)
 }

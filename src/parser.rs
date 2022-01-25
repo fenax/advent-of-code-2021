@@ -54,6 +54,10 @@ pub fn one_char_vec_per_line(input:& str)->Vec<Vec<char>>{
                      .map(|l| l.chars().collect()).collect()
 }
 
+pub fn one_int_vec_per_line(input:& str)->Vec<Vec<u32>>{
+    one_char_vec_per_line(input).iter().map(|x|x.iter().map(|v|v.to_digit(10).unwrap()).collect()).collect()
+}
+
 #[allow(dead_code)]
 pub fn items_separated_by_whitespace_separated_by_blankline(input:& str)->Vec<Vec<String>>{
     input.split("\n\n").map(str::trim).filter(|x| !x.is_empty())

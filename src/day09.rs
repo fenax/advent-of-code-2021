@@ -3,6 +3,7 @@ use std::collections::HashMap;
 
 use crate::formater::*;
 use crate::parser;
+use colored::*;
 
 pub fn run()-> Result<(), std::io::Error>{
     print_single_parse(9,
@@ -69,10 +70,12 @@ fn part2(data:&Vec<Vec<i8>>)->String{
 
     let stride = data[0].len();
     let mut last_bassin =0;
-
+    print!("\n");
     for y in 0..data.len(){
         for x in 0..stride{
+            let mut cur = data[y][x].to_string().normal();
             if data[y][x] == 9{
+                cur = cur.red();
                 bassins.push(0);
             }else{
                 let a = *bassins.last().unwrap_or(&0);
@@ -84,32 +87,42 @@ fn part2(data:&Vec<Vec<i8>>)->String{
                 };
                 if a == b {
                     if a == 0{
+                        cur = cur.yellow();
                         last_bassin += 1;
                         count.insert(last_bassin, 1);
                         bassins.push(last_bassin);
                     }else{
+                        cur = cur.green();
                         *(count.entry(a).or_default()) +=1;
+                        count.entry(b);
+                        bassins.push(b);
                     }
-                    count.entry(b);
-                    bassins.push(b);
+
                 }else{
-                    if !join.ends_with(&[(a,b)]){
+                    if !join.ends_with(&[(a,b)]) && a != 0 && b != 0{
+                        cur = cur.blue();
                         join.push((a,b));
                         let b_val = *count.entry(b).or_default();
                         *(count.entry(a).or_default()) += b_val;
                         *(count.entry(b).or_default()) =0;
                     }
-                    bassins.push(a);
-                    *(count.entry(a).or_default()) +=1;
+                    let sel = if a == 0 {b}else{a};
+                    bassins.push(sel);
+                    *(count.entry(sel).or_default()) +=1;
                 }
             }
+            print!("{}",cur);
         }
+        print!("\n");
     }
 
+    let mut top:Vec<(u16,u16)> = count.iter().filter_map(|(k,v)|{if k>&0 {Some((*v,*k))} else {None}}).collect();
 
+    top.sort();
+    top.reverse();
 
-    let solution:i64 = 0;
-    format!("solution {:?} {:?} {}",count, bassins,solution)
+    let solution:i64 = top[0].0 as i64 * top[1].0 as i64 * top[2].0 as i64;
+    format!("solution {:?} {:?} {}",count, top,solution)
 }
 
 fn is_low(data:&Vec<Vec<i8>>,x:usize,y:usize)->bool{

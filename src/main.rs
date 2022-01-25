@@ -1,5 +1,6 @@
 extern crate regex;
 extern crate itertools;
+extern crate colored;
 mod parser;
 mod formater;
 mod day01;

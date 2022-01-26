@@ -38,8 +38,8 @@ r#"[({(<(())[]>[[{[]{<()<>>
     #[test]
     fn test(){
         let data = parse(&read_file(10));
-        assert_eq!(part1(&data), format!("solution {}",354564));
-        assert_eq!(part2(&data), format!("solution {}",1609058859115i64));
+        assert_eq!(part1(&data), format!("solution {}",392097));
+        assert_eq!(part2(&data), format!("solution {}",4263222782i64));
     }
 }
 

@@ -82,8 +82,8 @@ start-RW"#;
     #[test]
     fn test(){
         let data = parse(&read_file(12));
-        assert_eq!(part1(&data), format!("solution {}",354564));
-        assert_eq!(part2(&data), format!("solution {}",1609058859115i64));
+        assert_eq!(part1(&data), format!("solution {}",3495));
+        assert_eq!(part2(&data), format!("solution {}",94849));
     }
 }
 

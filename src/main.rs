@@ -1,9 +1,7 @@
-extern crate regex;
-extern crate itertools;
 extern crate colored;
 extern crate im;
-mod parser;
-mod formater;
+extern crate itertools;
+extern crate regex;
 mod day01;
 mod day02;
 mod day03;
@@ -17,6 +15,9 @@ mod day10;
 mod day11;
 mod day12;
 mod day13;
+mod day14;
+mod formater;
+mod parser;
 
 fn main() -> Result<(), std::io::Error> {
     day01::run()?;
@@ -32,5 +33,7 @@ fn main() -> Result<(), std::io::Error> {
     day11::run()?;
     day12::run()?;
     day13::run()?;
-    Ok(())  
+    day14::run()?;
+
+    Ok(())
 }
